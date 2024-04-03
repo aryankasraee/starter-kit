@@ -170,6 +170,16 @@ services:
       TZ: '${TZ}'
     volumes:
       - ./storage/selenium:/dev/shm
+  
+  rabbitmq:
+    image: "${RABBITMQ_IMAGE}"
+    container_name: "${RABBITMQ_CONTAINER_NAME}"
+    volumes:
+      - ./storage/rabbitmq/data/:/var/lib/rabbitmq/
+      - ./var/log/rabbitmq/log/:/var/log/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-user}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS_USER:-pass}
 
 networks:
   default:

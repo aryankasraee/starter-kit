@@ -33,7 +33,10 @@ redis:6379
 ```text
 mailhog:1025
 ```
-
+```text
+rabbitmq:5672
+rabbitmq-management:15672
+```
 
 ### Minio
 
