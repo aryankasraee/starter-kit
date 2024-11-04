@@ -178,8 +178,21 @@ services:
       - ./storage/rabbitmq/data/:/var/lib/rabbitmq/
       - ./var/log/rabbitmq/log/:/var/log/rabbitmq
     environment:
-      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-user}
-      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS_USER:-pass}
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER:-user}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS:-pass}
+  
+  mongodb:
+    container_name: "${MONGODB_CONTAINER_NAME}"
+    image: "${MONGODB_IMAGE}"
+    volumes:
+      - ./storage/mongodb:/data/db
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-root}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:-password}
+    ports:
+      - 27018:27017
+
 
 networks:
   default:
